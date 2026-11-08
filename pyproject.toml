@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "transit-hub-pedestrian-egress"
+version = "1.0.0"
+description = "Social-force metro platform evacuation with Dijkstra/A* navigation, compared with NFPA 130 hand calculations."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+dependencies = ["numpy>=1.26", "pandas>=2.2", "pydantic>=2.6,<3", "matplotlib>=3.8"]
+
+[project.optional-dependencies]
+api = ["fastapi>=0.110", "uvicorn[standard]>=0.29", "httpx>=0.27"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+egress = "egress.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
